@@ -28,11 +28,11 @@ public class Main {
             StringTokenizer itr = new StringTokenizer(value.toString());
             while (itr.hasMoreTokens()) {
                 String w1 = itr.nextToken();
+                System.out.println(w1);
                 String w2 = itr.nextToken();
                 String w3 = itr.nextToken();
                 String probability = itr.nextToken();
                 word.set(w1+" "+w2);
-
                 context.write(new Text(word),new Text(w3+","+probability));
             }
         }
@@ -51,7 +51,7 @@ public class Main {
                 public int compare(String[] o1, String[] o2) {
                     Float num1 = Float.parseFloat(o1[1]);
                     Float num2 = Float.parseFloat(o2[1]);
-                    return (int)(num1 - num2);
+                    return (int)(num2*100000000 - num1*100000000);
                 }
             });
             for(String[] array: valuesTextArray){
